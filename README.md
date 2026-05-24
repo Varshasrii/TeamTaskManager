@@ -48,21 +48,6 @@ TeamTaskManager/
 - REST API Implementation
 - Frontend & Backend Deployment
 
-## Tech Stack
-
-### Backend
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-- JWT
-- bcryptjs
-
-### Frontend
-- React.js
-- Axios
-- React Router DOM
-
 ---
 
 # Tech Stack
