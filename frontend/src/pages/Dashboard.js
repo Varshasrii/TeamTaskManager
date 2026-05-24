@@ -5,8 +5,6 @@ function Dashboard() {
   const [projects, setProjects] = useState([]);
   const [tasks, setTasks] = useState([]);
 
-  const role = localStorage.getItem("role");
-
   const [projectData, setProjectData] = useState({
     title: "",
     description: ""
@@ -154,109 +152,6 @@ function Dashboard() {
 
   };
 
-  const deleteProject = async (id) => {
-
-    try {
-
-      const token = localStorage.getItem("token");
-
-      const response = await fetch(
-        `https://teamtaskmanager-production-4e1a.up.railway.app/api/projects/${id}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: token
-          }
-        }
-      );
-
-      const data = await response.json();
-
-      alert(data.message);
-
-      fetchProjects();
-
-    } catch (error) {
-
-      console.log(error);
-
-    }
-
-  };
-
-  const deleteTask = async (id) => {
-
-    try {
-
-      const token = localStorage.getItem("token");
-
-      const response = await fetch(
-        `https://teamtaskmanager-production-4e1a.up.railway.app/api/tasks/${id}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: token
-          }
-        }
-      );
-
-      const data = await response.json();
-
-      alert(data.message);
-
-      fetchTasks();
-
-    } catch (error) {
-
-      console.log(error);
-
-    }
-
-  };
-
-  const updateTaskStatus = async (id) => {
-
-    try {
-
-      const token = localStorage.getItem("token");
-5000
-      const response = await fetch(
-        `https://teamtaskmanager-production-4e1a.up.railway.app/api/tasks/${id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: token
-          },
-          body: JSON.stringify({
-            status: "Completed"
-          })
-        }
-      );
-
-      const data = await response.json();
-
-      alert(data.message);
-
-      fetchTasks();
-
-    } catch (error) {
-
-      console.log(error);
-
-    }
-
-  };
-
-  const handleLogout = () => {
-
-    localStorage.removeItem("token");
-    localStorage.removeItem("role");
-
-    window.location.reload();
-
-  };
-
   useEffect(() => {
 
     fetchProjects();
@@ -265,55 +160,35 @@ function Dashboard() {
   }, []);
 
   return (
-    <div
-      style={{
-        padding: "30px",
-        backgroundColor: "#f5f5f5",
-        minHeight: "100vh"
-      }}
-    >
+    <div style={{ padding: "30px" }}>
 
       <h1>Dashboard</h1>
 
-      <button onClick={handleLogout}>
-        Logout
-      </button>
+      <h2>Create Project</h2>
+
+      <input
+        type="text"
+        name="title"
+        placeholder="Project Title"
+        onChange={handleProjectChange}
+      />
 
       <br /><br />
 
-      {
-        role === "Admin" && (
-          <div>
+      <input
+        type="text"
+        name="description"
+        placeholder="Project Description"
+        onChange={handleProjectChange}
+      />
 
-            <h2>Create Project</h2>
+      <br /><br />
 
-            <input
-              type="text"
-              name="title"
-              placeholder="Project Title"
-              onChange={handleProjectChange}
-            />
+      <button onClick={createProject}>
+        Create Project
+      </button>
 
-            <br /><br />
-
-            <input
-              type="text"
-              name="description"
-              placeholder="Project Description"
-              onChange={handleProjectChange}
-            />
-
-            <br /><br />
-
-            <button onClick={createProject}>
-              Create Project
-            </button>
-
-            <br /><br />
-
-          </div>
-        )
-      }
+      <br /><br />
 
       <h2>Create Task</h2>
 
@@ -357,25 +232,13 @@ function Dashboard() {
           <div
             key={project._id}
             style={{
-              backgroundColor: "white",
-              borderRadius: "10px",
-              padding: "15px",
-              boxShadow: "0px 2px 5px gray",
+              border: "1px solid black",
+              padding: "10px",
               marginBottom: "10px"
             }}
           >
             <h3>{project.title}</h3>
-
             <p>{project.description}</p>
-
-            {
-              role === "Admin" && (
-                <button onClick={() => deleteProject(project._id)}>
-                  Delete Project
-                </button>
-              )
-            }
-
           </div>
         ))
       }
@@ -387,37 +250,14 @@ function Dashboard() {
           <div
             key={task._id}
             style={{
-              backgroundColor: "white",
-              borderRadius: "10px",
-              padding: "15px",
-              boxShadow: "0px 2px 5px gray",
+              border: "1px solid blue",
+              padding: "10px",
               marginBottom: "10px"
             }}
           >
             <h3>{task.title}</h3>
-
             <p>{task.description}</p>
-
             <p>Status: {task.status}</p>
-
-            {
-              role === "Admin" && (
-                <button onClick={() => deleteTask(task._id)}>
-                  Delete Task
-                </button>
-              )
-            }
-
-            <br /><br />
-
-            {
-              role === "Admin" && (
-                <button onClick={() => updateTaskStatus(task._id)}>
-                  Mark Completed
-                </button>
-              )
-            }
-
           </div>
         ))
       }
