@@ -43,7 +43,7 @@ function Dashboard() {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        "http://localhost:5000/api/projects/create",
+        "https://teamtaskmanager-production-4e1a.up.railway.app/api/projects/create",
         {
           method: "POST",
           headers: {
@@ -75,7 +75,7 @@ function Dashboard() {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        "http://localhost:5000/api/tasks/create",
+        "https://teamtaskmanager-production-4e1a.up.railway.app/api/tasks/create",
         {
           method: "POST",
           headers: {
@@ -107,7 +107,7 @@ function Dashboard() {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        "http://localhost:5000/api/projects",
+        "https://teamtaskmanager-production-4e1a.up.railway.app/api/projects",
         {
           headers: {
             Authorization: token
@@ -134,7 +134,7 @@ function Dashboard() {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        "http://localhost:5000/api/tasks",
+        "https://teamtaskmanager-production-4e1a.up.railway.app/api/tasks",
         {
           headers: {
             Authorization: token
@@ -161,7 +161,7 @@ function Dashboard() {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        `http://localhost:5000/api/projects/${id}`,
+        `https://teamtaskmanager-production-4e1a.up.railway.app/api/projects/${id}`,
         {
           method: "DELETE",
           headers: {
@@ -191,7 +191,7 @@ function Dashboard() {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        `http://localhost:5000/api/tasks/${id}`,
+        `https://teamtaskmanager-production-4e1a.up.railway.app/api/tasks/${id}`,
         {
           method: "DELETE",
           headers: {
@@ -219,9 +219,9 @@ function Dashboard() {
     try {
 
       const token = localStorage.getItem("token");
-
+5000
       const response = await fetch(
-        `http://localhost:5000/api/tasks/${id}`,
+        `https://teamtaskmanager-production-4e1a.up.railway.app/api/tasks/${id}`,
         {
           method: "PUT",
           headers: {
