@@ -2,6 +2,8 @@
 This project is a Full Stack MERN Team Task Manager application that allows users to create projects, assign tasks, and track progress with role-based access control. The application includes authentication, dashboard management, task tracking, and project management features.
 
 # Project Structure
+
+```text
 TeamTaskManager/
 ├── Backend/
 │   ├── models/
@@ -33,6 +35,7 @@ TeamTaskManager/
 │
 ├── README.md
 └── .gitignore
+```
 
 # Features
 - User Signup & Login
