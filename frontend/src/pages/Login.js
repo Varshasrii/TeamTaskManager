@@ -13,35 +13,41 @@ function Login() {
       [e.target.name]: e.target.value
     });
   };
+const handleLogin = async () => {
+  try {
+    const response = await fetch(
+      "https://teamtaskmanager-production-4e1a.up.railway.app/api/auth/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      }
+    );
 
-  const handleLogin = async () => {
+    const data = await response.json();
 
-    try {
+    console.log("Login Response:", data);
 
-      const response = await fetch(
-        "https://teamtaskmanager-production-4e1a.up.railway.app/api/auth/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(formData)
-        }
-      );
-
-      const data = await response.json();
-
+    if (data.token) {
       localStorage.setItem("token", data.token);
-localStorage.setItem("role", data.user.role);
-      alert(data.message);
-window.location.reload();
-    } catch (error) {
 
-      console.log(error);
+      if (data.user) {
+        localStorage.setItem("role", data.user.role);
+      }
 
+      alert("Login Successful");
+      window.location.href = "/dashboard";
+    } else {
+      alert(data.message || "Login Failed");
     }
 
-  };
+  } catch (error) {
+    console.log(error);
+  }
+};
+  
 
   return (
     <div style={{ padding: "30px" }}>

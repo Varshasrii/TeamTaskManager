@@ -3,16 +3,15 @@ import { useState } from "react";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-
+import CreateTask from "./pages/CreateTask";
 function App() {
 
   const token = localStorage.getItem("token");
 
   const [showSignup, setShowSignup] = useState(false);
-
-  if (token) {
-    return <Dashboard />;
-  }
+if (token) {
+  return <Dashboard />;
+}
 
   return (
     <div>
